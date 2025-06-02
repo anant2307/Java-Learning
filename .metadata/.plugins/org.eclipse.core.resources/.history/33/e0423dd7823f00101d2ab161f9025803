@@ -1,0 +1,69 @@
+package BasicOppsConcepts;
+
+import java.util.Scanner;
+
+// Superclass
+class Employee {
+    String name;
+
+    Employee(String name) {
+        this.name = name;
+    }
+
+    void displayInfo() {
+        System.out.println("Employee Name: " + name);
+    }
+
+    void displayInfo(String department) {
+        System.out.println("Employee Name: " + name);
+        System.out.println("Department: " + department);
+    }
+}
+
+// Subclass
+class Manager extends Employee {
+    String department;
+
+    Manager(String name, String department) {
+        super(name);
+        this.department = department;
+    }
+
+    @Override
+    void displayInfo() {
+        System.out.println("Manager Name: " + name);
+        System.out.println("Manages Department: " + department);
+    }
+}
+
+// Main class
+public class PolymorphismExample {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // Dynamic input for Employee
+        System.out.print("Enter Employee name: ");
+        String empName = scanner.nextLine();
+
+        System.out.print("Enter Employee department (for overloading): ");
+        String empDept = scanner.nextLine();
+
+        Employee emp = new Employee(empName);
+        emp.displayInfo();             // Calls normal method
+        emp.displayInfo(empDept);      // Calls overloaded method
+
+        System.out.println("-----------------------");
+
+        // Dynamic input for Manager
+        System.out.print("Enter Manager name: ");
+        String mgrName = scanner.nextLine();
+
+        System.out.print("Enter Manager department: ");
+        String mgrDept = scanner.nextLine();
+
+        Employee mgr = new Manager(mgrName, mgrDept);
+        mgr.displayInfo();             // Calls overridden method
+
+        scanner.close();
+    }
+}
